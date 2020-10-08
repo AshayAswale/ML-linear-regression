@@ -1,0 +1,51 @@
+Student name: Ashay Aswale
+Part 2 writeup:
+
+For the part 2 of 'Make predictions by using your implementation', I settled on these values:
+alpha: 0.95
+n_epoch: 10
+
+With these values, these are the results I got:
+training loss: 5.716343363218136e-06
+testing loss: 11646.363558768067
+
+It is possible that with the training loss that low, the model might have overfit, but with the changes in the 
+alpha value, the testing loss did not change much. so I decided to minimise the training loss to the lowest possible value. 
+
+The testing loss in the trained model is very high, so we can conclude that the trained model is not even close to 
+the desired state and the predicted values are way off the actual values.
+
+I tested the values one at a time. First I fixed the value of the n_epoch to 50 then played with the alpha value:
+alpha: 0.01     training loss: 2506.2437
+alpha: 0.50     training loss: 4.800 e-15
+alpha: 1        training loss: 7.858 e-29
+alpha: 5        training loss: 3.265 e+82
+
+As we see here, there is a steep parabollic behaviour, so we fine tuned the value to get the reported alpha value. 
+
+Now for the n_epoch values, we fixed the alpha value to 1 (for simplicity), but this time we also saw the testing loss
+as only the training loss was too small to conclude anything.
+(In this case, I am using the model trained for the training dataset, then predicting its values for the testing, 
+and then using these values to tell the testing loss)
+
+n_epoch: 1          training loss: 351.021            testing loss: 10770.238674876266
+
+n_epoch: 5          training loss: 0.246              testing loss: 11665.205438722227
+
+n_epoch: 9          training loss: 0.000              testing loss: 11647.624250571947
+
+n_epoch: 10         training loss: 8.410 e-05         testing loss: 11645.981183135733
+
+n_epoch: 11         training loss: 1.732 e-05         testing loss: 11646.788965361475
+
+n_epoch: 25         training loss: 4.417 e-15         testing loss: 11646.558336564032
+
+n_epoch: 50         training loss: 7.858              testing loss: 11646.558332661665
+
+
+Hence we again see a parabollic behaviour of the n_epoch. Hence I seettled on the n_epoch value of 10 in this case.
+
+
+With this data, we can also compare the relationship between the n_epoch and the alpha. With the small changes in the 
+alpha value, the loss is increased/decreased drastically. But with the changes in n_epoch the values are not affected 
+much. Also, after the peak at the n_epoch=10, the values increase but not by a huge value. 
